@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">EntregableMOMA</string>
+    <string name="facebook_app_id">1953349454955282</string>
+    <string name="fb_login_protocol_scheme">fb1953349454955282</string>
+
+    <string name="app_bar_movie_list_activity_title">EntregableMOMA</string>
+
+    <string name="logOut">Cerrar Sesion</string>
+    <string name="Perfil">Perfil</string>
+</resources>

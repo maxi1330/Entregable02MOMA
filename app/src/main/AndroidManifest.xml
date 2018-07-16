@@ -19,7 +19,6 @@
         <activity android:name=".View.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -28,8 +27,12 @@
         <activity android:name=".View.ActivityDetalleObras"
                   android:label="Detalles"
                   android:parentActivityName=".View.MainActivity"/>
-        <activity android:name=".View.ActivityPerfil" />
-        <activity android:name=".View.ActivityChat"></activity>
+        <activity android:name=".View.ActivityPerfil"
+                  android:label="Perfil"
+                  android:parentActivityName=".View.MainActivity"/>
+        <activity android:name=".View.ActivityChat"
+                  android:label="Chat"
+                  android:parentActivityName=".View.MainActivity"/>
     </application>
 
 </manifest>

@@ -13,8 +13,6 @@ import android.widget.Toast;
 import com.example.maxig.entregable02android.Model.pojo.Paint;
 import com.example.maxig.entregable02android.R;
 import com.example.maxig.entregable02android.Util.GlideApp;
-import com.example.maxig.entregable02android.View.ActivityDetalleObras;
-import com.example.maxig.entregable02android.View.MainActivity;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -80,7 +78,7 @@ public class AdapterRecyclerListadoObras extends RecyclerView.Adapter {
             textViewTitulo.setText(unPaint.getName());
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRefPintura = storage.getReference().child(unPaint.getImage());
-            //*GlideApp.with(MainActivity.this).load(storageRefPintura).into(imageViewPaintListado);
+            GlideApp.with(itemView).load(storageRefPintura).centerCrop().into(imageViewPaintListado);
         }
     }
 

@@ -1,48 +1,58 @@
-<android.support.v7.widget.CardView
-    android:layout_margin="2dp"
+<LinearLayout
+    android:layout_margin="5dp"
     android:layout_height="wrap_content"
-    android:layout_width="320dp"
-    android:maxWidth="50dp"
-    android:layout_gravity="right"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:elevation="200dp"
-    app:cardCornerRadius="10dp"
+    android:layout_width="match_parent"
+    android:gravity="right"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
-        android:layout_margin="5dp"
-        android:layout_width="match_parent"
+    <android.support.v7.widget.CardView
+        android:layout_margin="2dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_width="320dp"
+        android:maxWidth="50dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:elevation="200dp"
+        app:cardCornerRadius="10dp"
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <FrameLayout
+        <LinearLayout
+            android:layout_margin="5dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textViewNameUserChat"
-                android:layout_gravity="left"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="MaxiGN"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/textViewClockMensaje"
-                android:layout_gravity="right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="00:00:00"
-                android:textStyle="bold"/>
-
-        </FrameLayout>
-
-        <TextView
-            android:id="@+id/textViewMensajeAEnviar"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MENSAJE QUE aparece ..............."/>
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-</android.support.v7.widget.CardView>
+                <TextView
+                    android:id="@+id/textViewNameUserChat"
+                    android:layout_gravity="left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MaxiGN"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/textViewClockMensaje"
+                    android:layout_gravity="right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00:00:00"
+                    android:textStyle="bold"/>
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/textViewMensajeAEnviar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MENSAJE QUE aparece ..............."/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>
+
+
+

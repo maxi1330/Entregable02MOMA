@@ -2,53 +2,104 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="center_horizontal">
+    android:orientation="vertical">
 
     <include layout="@layout/toolbar"/>
 
     <ImageView
+        android:layout_gravity="center_horizontal"
         android:id="@+id/imageViewPaint"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
+        android:layout_margin="10dp"
+        android:layout_width="260dp"
+        android:layout_height="220dp"
         />
 
     <TextView
+        android:layout_margin="15dp"
         android:id="@+id/textViewNamePaint"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
         android:text=""
-        android:textSize="30dp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/textViewArtistName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text=""
-        android:textSize="20dp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/textViewArtistNacionality"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text=""
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:textStyle="normal"/>
 
-    <TextView
-        android:id="@+id/textViewArtistInfluence"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text=""
-        android:textSize="20dp"
-        android:textStyle="normal"/>
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity=""
+            android:text="Artista: "
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+
+        <TextView
+
+            android:id="@+id/textViewArtistName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity=""
+            android:text=""
+            android:textSize="15dp"
+            android:textStyle="normal"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity=""
+            android:text="Nacionalidad: "
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textViewArtistNacionality"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=""
+            android:textSize="15dp"
+            android:textStyle="normal"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:id="@+id/textViewInfluenciadoPor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity=""
+            android:text="Influenciado por: "
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textViewArtistInfluence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=""
+            android:textSize="15dp"
+            android:textStyle="normal"/>
+
+    </LinearLayout>
+
+
 
 </LinearLayout>

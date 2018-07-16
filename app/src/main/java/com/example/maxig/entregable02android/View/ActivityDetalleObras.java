@@ -4,13 +4,18 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.maxig.entregable02android.Controller.ControllerArtists;
+import com.example.maxig.entregable02android.Controller.ControllerRoomArtists;
 import com.example.maxig.entregable02android.Model.pojo.Artists;
 import com.example.maxig.entregable02android.R;
 import com.example.maxig.entregable02android.Util.GlideApp;
+import com.example.maxig.entregable02android.Util.ResultListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,6 +23,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ActivityDetalleObras extends AppCompatActivity {
     public static final String NAME_PAINT  = "NAME";
@@ -62,36 +70,26 @@ public class ActivityDetalleObras extends AppCompatActivity {
     private void ActualizoDatos() {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRefPintura = storage.getReference().child(imageURL);
-        GlideApp.with(ActivityDetalleObras.this).load(storageRefPintura).into(imageViewPaint);
-        CargoDatosArtista(artistID);
+        GlideApp.with(ActivityDetalleObras.this).load(storageRefPintura).centerCrop().into(imageViewPaint);
+        CargoDatosArtista();
     }
 
-    private void CargoDatosArtista(final String artisID){
-        DatabaseReference mDataBase;                                                        //Base de datos
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();                 //Busco la instancia de la base de datos
-        mDataBase = firebaseDatabase.getReference();                                        //Busco la referencia
-        DatabaseReference reference = mDataBase.child("artists");
-        Toast.makeText(this, String.valueOf(artisID), Toast.LENGTH_SHORT).show();
-        ValueEventListener valueEventListener = new ValueEventListener() {
+    private void CargoDatosArtista() {
+        ControllerArtists controllerArtists = new ControllerArtists(getApplicationContext());
+        controllerArtists.obtenerArtista(new ResultListener<List<Artists>>() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshotChild : dataSnapshot.getChildren()){
-                    Artists artistaLeido = dataSnapshotChild.getValue(Artists.class);
-                    if(artistaLeido.getArtistId().equals(artisID)){
-                        textViewArtistName.setText(artistaLeido.getName());
-                        textViewArtistNacionality.setText(artistaLeido.getNacionality());
-                        textViewArtistInfluence.setText(artistaLeido.getInfluenced_by());
+            public void finish(List<Artists> resultado) {
+                for (Artists unArtista : resultado ) {
+                    if(unArtista.getArtistId().equals(artistID)){
                         textViewNamePaint.setText(namePaint);
+                        textViewArtistName.setText(unArtista.getName());
+                        textViewArtistInfluence.setText(unArtista.getInfluenced_by());
+                        textViewArtistNacionality.setText(unArtista.getNationality());
                         return;
                     }
                 }
+                Toast.makeText(ActivityDetalleObras.this, "Artista NO encontrado!", Toast.LENGTH_SHORT).show();
             }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(ActivityDetalleObras.this, "Error al cargar!", Toast.LENGTH_SHORT).show();
-            }
-        };
-        reference.addValueEventListener(valueEventListener);
+        });
     }
 }

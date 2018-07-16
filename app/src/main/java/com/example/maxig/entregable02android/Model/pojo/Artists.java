@@ -1,10 +1,18 @@
 package com.example.maxig.entregable02android.Model.pojo;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+@Entity
 public class Artists {
     private String Influenced_by;
+    @PrimaryKey
+    @NonNull
     private String artistId;
     private String name;
-    private String nacionality;
+    private String nationality;
 
     public Artists() {
     }
@@ -14,7 +22,7 @@ public class Artists {
         Influenced_by = influenced_by;
         this.artistId = artistId;
         this.name = name;
-        this.nacionality = nacionality;
+        this.nationality = nationality;
     }
 
     public String getInfluenced_by() {
@@ -41,12 +49,12 @@ public class Artists {
         this.name = name;
     }
 
-    public String getNacionality() {
-        return nacionality;
+    public String getNationality() {
+        return nationality;
     }
 
-    public void setNacionality(String nacionality) {
-        this.nacionality = nacionality;
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
     }
 
     @Override
@@ -55,7 +63,7 @@ public class Artists {
                 "Influenced_by='" + Influenced_by + '\'' +
                 ", artistId='" + artistId + '\'' +
                 ", name='" + name + '\'' +
-                ", nacionality='" + nacionality + '\'' +
+                ", nationality='" + nationality + '\'' +
                 '}';
     }
 }

@@ -1,12 +1,14 @@
 package com.example.maxig.entregable02android.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.maxig.entregable02android.Model.pojo.Mensaje;
 import com.example.maxig.entregable02android.R;
@@ -18,6 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterMensajesChat extends RecyclerView.Adapter {
+
+    private static final Integer MENSAJE_ENVIADO  = 0;
+    private static final Integer MENSAJE_RECIBIDO  = 1;
 
     private List<Mensaje> listadoDeMensajes;
     private FirebaseUser user;
@@ -31,7 +36,12 @@ public class AdapterMensajesChat extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View celda = layoutInflater.inflate(R.layout.celda_mensaje_chat_recibido,parent,false);
+        View celda;
+        if(viewType == MENSAJE_ENVIADO){
+            celda = layoutInflater.inflate(R.layout.celda_mensaje_chat_enviado,parent,false);
+        } else {
+            celda = layoutInflater.inflate(R.layout.celda_mensaje_chat_recibido,parent,false);
+        }
         AdapterMensajesChat.mensajeViewHolder mensajeViewHolder = new AdapterMensajesChat.mensajeViewHolder(celda);
         return mensajeViewHolder;
     }
@@ -39,9 +49,9 @@ public class AdapterMensajesChat extends RecyclerView.Adapter {
     @Override
     public int getItemViewType(int position) {
         if(listadoDeMensajes.get(position).getNameUser().equals(user.getDisplayName())) {
-            return R.layout.celda_mensaje_chat_enviado;
+            return MENSAJE_ENVIADO;
         }else {
-            return R.layout.celda_mensaje_chat_recibido;
+            return MENSAJE_RECIBIDO;
         }
     }
 
@@ -82,7 +92,7 @@ public class AdapterMensajesChat extends RecyclerView.Adapter {
 
         public void cargarDatos(Mensaje unMensaje){
             textViewNameUserChat.setText(unMensaje.getNameUser());
-            //textViewHoraClock.setText(unMensaje.getClock());
+            textViewHoraClock.setText(unMensaje.getClock());
             textViewMensajeChat.setText(unMensaje.getMensaje());
         }
     }

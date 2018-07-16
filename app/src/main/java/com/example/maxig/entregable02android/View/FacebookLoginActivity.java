@@ -80,11 +80,8 @@ public class FacebookLoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
 
                         } else {
-                            Toast.makeText(FacebookLoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-
+                            Toast.makeText(FacebookLoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                         }
-
                     }
                 });
     }

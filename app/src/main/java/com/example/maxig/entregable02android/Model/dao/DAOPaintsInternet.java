@@ -30,14 +30,12 @@ public class DAOPaintsInternet {
         daoPaintsRetrofitService = retrofit.create(DAOPaintsRetrofitService.class);
     }
 
-    public void obtenerPeliculasInternet(final ResultListener<List<Paint>> escuchadorControlador){
-        //TODO 1) Pedirle al servicio el metodo que devuelve una call con las pinturas
+    public void obtenerPinturas(final ResultListener<List<Paint>> escuchadorControlador){
+
         Call<ContainerPaint> escuchadorRetrofit = daoPaintsRetrofitService.getPaints();
-        //TODO 2) Al objeto call pedirle las peliculas
         escuchadorRetrofit.enqueue(new Callback<ContainerPaint>() {
             @Override
             public void onResponse(Call<ContainerPaint> call, Response<ContainerPaint> response) {
-                //TODO   y cuando estas vuelven darselas al listenerControler con el finish
                 ContainerPaint containerPaint = response.body();
                 escuchadorControlador.finish(containerPaint.getPaints());
             }

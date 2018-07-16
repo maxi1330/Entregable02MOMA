@@ -10,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.maxig.entregable02android.Adapters.AdapterRecyclerListadoObras;
@@ -48,10 +47,8 @@ public class MainActivity extends AppCompatActivity implements AdapterRecyclerLi
         adapter = new AdapterRecyclerListadoObras(this);
         recyclerViewListadoObras.setAdapter(adapter);
 
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 3);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerViewListadoObras.setLayoutManager(layoutManager);
-        cargarListado();
-
 
         button = findViewById(R.id.btn);
         button.setOnClickListener(new View.OnClickListener() {
@@ -60,11 +57,16 @@ public class MainActivity extends AppCompatActivity implements AdapterRecyclerLi
                 startActivity(new Intent(MainActivity.this,ActivityChat.class));
             }
         });
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        cargarListado();
     }
 
     private void cargarListado(){
-        ControllerPaints controllerPaints = new ControllerPaints();
+        final ControllerPaints controllerPaints = new ControllerPaints(getApplicationContext());
         controllerPaints.obtenerObrasArte(new ResultListener<List<Paint>>() {
             @Override
             public void finish(List<Paint> resultado) {

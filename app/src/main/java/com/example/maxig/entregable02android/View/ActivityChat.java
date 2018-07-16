@@ -1,15 +1,23 @@
 package com.example.maxig.entregable02android.View;
 
+import android.content.Context;
 import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.maxig.entregable02android.Adapters.AdapterMensajesChat;
 import com.example.maxig.entregable02android.Model.pojo.Mensaje;
@@ -43,6 +51,11 @@ public class ActivityChat extends AppCompatActivity {
         imageViewBotonEnviar = findViewById(R.id.imageViewBotonEnviar);
         recyclerViewChat = findViewById(R.id.recyclerViewChat);
 
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+
         adapterMensajesChat = new AdapterMensajesChat();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerViewChat.setLayoutManager(layoutManager);
@@ -52,16 +65,16 @@ public class ActivityChat extends AppCompatActivity {
         databaseReference = database.getReference("CHAT");
 
         imageViewBotonEnviar.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
                 String mensaje = editTextMensajeChat.getText().toString();
                 String nameUser = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
-                String clock = String.valueOf(new Date().getTime());
+                String date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date());
+                //String date = "Aca va la hora, pero no me anda";                                      //En algunos celulares no anda el SimpleDateFormat y uso esto
                 editTextMensajeChat.setText("");
-
-                databaseReference.push().setValue(new Mensaje(mensaje, nameUser, clock));
-                recyclerViewChat.scrollToPosition(adapterMensajesChat.getItemCount()-1);
-
+                databaseReference.push().setValue(new Mensaje(mensaje, nameUser, date));
+                recyclerViewChat.scrollToPosition(adapterMensajesChat.getItemCount()+1);
             }
         });
 
@@ -92,9 +105,5 @@ public class ActivityChat extends AppCompatActivity {
 
             }
         });
-
-
     }
-
-
 }

@@ -3,7 +3,6 @@ package com.example.maxig.entregable02android.Controller;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.widget.Toast;
 
 import com.example.maxig.entregable02android.Model.dao.DAOPaintsInternet;
 import com.example.maxig.entregable02android.Model.pojo.Paint;

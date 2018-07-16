@@ -61,6 +61,11 @@ public class ActivityChat extends AppCompatActivity {
         recyclerViewChat.setLayoutManager(layoutManager);
         recyclerViewChat.setAdapter(adapterMensajesChat);
 
+
+        if(!hayInternet()){
+            Toast.makeText(this, "Requiere conexion a Internet", Toast.LENGTH_SHORT).show();
+        }
+
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("CHAT");
 
@@ -71,10 +76,10 @@ public class ActivityChat extends AppCompatActivity {
                 String mensaje = editTextMensajeChat.getText().toString();
                 String nameUser = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
                 String date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date());
-                //String date = "Aca va la hora, pero no me anda";                                      //En algunos celulares no anda el SimpleDateFormat y uso esto
+                //String date = "00:00:00";                                                     //En algunos celulares viejos no anda el SimpleDateFormat y uso esto
                 editTextMensajeChat.setText("");
                 databaseReference.push().setValue(new Mensaje(mensaje, nameUser, date));
-                recyclerViewChat.scrollToPosition(adapterMensajesChat.getItemCount()+1);
+                recyclerViewChat.smoothScrollToPosition(adapterMensajesChat.getItemCount());
             }
         });
 
@@ -105,5 +110,19 @@ public class ActivityChat extends AppCompatActivity {
 
             }
         });
+
+
+    }
+
+    private boolean hayInternet(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            //Toast.makeText(context, "Hay internet", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            //Toast.makeText(context, "NO hay internet", Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 }

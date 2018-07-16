@@ -1,10 +1,19 @@
 <LinearLayout
+    android:layout_margin="20dp"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:gravity="center"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/moma"/>
 
     <com.facebook.login.widget.LoginButton
+        android:layout_marginTop="50dp"
         android:id="@+id/login_button"
         android:textSize="20dp"
         android:layout_width="wrap_content"

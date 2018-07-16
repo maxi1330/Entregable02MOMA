@@ -63,10 +63,10 @@ public class ControllerArtists {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
-            Toast.makeText(context, "Hay internet", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Hay internet", Toast.LENGTH_SHORT).show();
             return true;
         } else {
-            Toast.makeText(context, "NO hay internet", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "NO hay internet", Toast.LENGTH_SHORT).show();
             return false;
         }
     }

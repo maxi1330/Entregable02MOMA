@@ -7,9 +7,10 @@ import android.support.annotation.NonNull;
 @Entity
 public class Paint {
 
+
+    private String artistId;
     @PrimaryKey
     @NonNull
-    private String artistId;
     private String image;
     private String name;
 
